@@ -1,0 +1,6 @@
+1. mkdir {00..99}
+2. find . -name "[0-9][0-9]" -execdir mkdir {}/{0..9} \; 
+3. for xx in {00..99}; do for y in {0..9}; do touch $xx/$y/"$xx"_"$y".ini; done; done 
+4. for xx in {00..99}; do for y in {0..9}; do file=$xx/$y/"$xx"_"$y".ini; echo "klucz1=wartosc1" > $file; echo "klucz"$xx"=wartosc"$y"" >> $file; echo "klucz3=wartosc3" >> $file; done; done
+5. sed -i '2s/^/#/' [0-9][0-9]/5/[0-9][0-9]_5.ini
+6. find . -wholename "./[0-9][0-9]/[0-9]/[0-9][0-9]_[0-9].ini" | while read -r file; do if [[ $(sed '2!d' $file) =~ ^#.* ]]; then rm "$file"; fi; done
